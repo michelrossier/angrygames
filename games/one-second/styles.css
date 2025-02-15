@@ -82,4 +82,10 @@ button:hover:not(:disabled) {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+#failureMessage.winner {
+    color: var(--success);
+    font-size: 1.4rem;
+    font-weight: 600;
 } 

@@ -10,7 +10,6 @@ const failureMessages = [
     "Oh, you are so bad",
     "You sucked at that",
     "Why are you so bad?",
-    "Even my grandma could do better and she is dead",
     "How old are you, 3?",
     "Can't you be better?",
     "You are such a Paul",
@@ -19,6 +18,9 @@ const failureMessages = [
     "You are the worst",
     "You are so bad, you should feel bad"
 ];
+
+// Add this constant with the other messages at the top
+const winnerMessage = "You did it, damn, you did! Who would have thought? I didnt.";
 
 function updateTimer() {
     const currentTime = Date.now();
@@ -54,12 +56,14 @@ function toggleGame() {
             const gameStatuses = getCookie('gameStatuses') ? JSON.parse(getCookie('gameStatuses')) : {};
             gameStatuses.oneSecond = true;
             setCookie('gameStatuses', JSON.stringify(gameStatuses));
-            messageDiv.textContent = ''; // Clear any failure message
+            messageDiv.textContent = winnerMessage;
+            messageDiv.classList.add('winner');
         } else {
             document.body.style.backgroundColor = '#f44336';
             // Show random failure message
             const randomMessage = failureMessages[Math.floor(Math.random() * failureMessages.length)];
             messageDiv.textContent = randomMessage;
+            messageDiv.classList.remove('winner');
         }
     }
 }
