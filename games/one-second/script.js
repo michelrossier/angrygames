@@ -1,5 +1,18 @@
+// Add this at the start of the script
+console.log('Script starting...');
+
 const gameBtn = document.getElementById('gameBtn');
 const timerDisplay = document.getElementById('timer');
+const messageDiv = document.getElementById('failureMessage');
+const welcomeDiv = document.getElementById('welcomeMessage');
+
+// Log to check if we found our elements
+console.log('Elements found:', {
+    gameBtn,
+    timerDisplay,
+    messageDiv,
+    welcomeDiv
+});
 
 let startTime;
 let timerInterval;
@@ -39,6 +52,7 @@ function toggleGame() {
         gameBtn.classList.remove('start');
         gameBtn.classList.add('stop');
         messageDiv.textContent = ''; // Clear any previous message
+        welcomeDiv.style.display = 'none'; // Hide welcome message when game starts
     } else {
         // Stop the game
         clearInterval(timerInterval);
@@ -85,12 +99,15 @@ function setCookie(name, value) {
     document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
 }
 
-// Add after the timer div in the HTML
-function addMessageDiv() {
-    const messageDiv = document.createElement('div');
-    messageDiv.id = 'failureMessage';
-    document.querySelector('.container').appendChild(messageDiv);
-    return messageDiv;
-}
+// Get the username from cookie
+const userName = getCookie('userName') || 'Player';
+console.log('Username:', userName);
 
-const messageDiv = addMessageDiv(); 
+// Set the welcome message
+if (welcomeDiv) {
+    welcomeDiv.textContent = `Okay, ${userName}, let's see what you got`;
+    welcomeDiv.style.display = 'block'; // Make sure it's visible
+    console.log('Welcome message set');
+} else {
+    console.error('Welcome div not found!');
+} 
