@@ -46,13 +46,14 @@ function toggleGame() {
         // Start the game
         startTime = Date.now();
         isRunning = true;
-        document.body.style.backgroundColor = '';
+        document.body.style.backgroundColor = '';  // Reset to default blue gradient
+        document.body.style.backgroundImage = 'linear-gradient(135deg, #f1f5f9 0%, #e0f2fe 100%)';
         timerInterval = setInterval(updateTimer, 10);
         gameBtn.textContent = 'Stop';
         gameBtn.classList.remove('start');
         gameBtn.classList.add('stop');
-        messageDiv.textContent = ''; // Clear any previous message
-        welcomeDiv.style.display = 'none'; // Hide welcome message when game starts
+        messageDiv.textContent = '';
+        welcomeDiv.style.display = 'none';
     } else {
         // Stop the game
         clearInterval(timerInterval);
@@ -71,7 +72,9 @@ function toggleGame() {
         const difference = Math.abs(1 - finalTime);
         
         if (difference < 0.001) {
-            document.body.style.backgroundColor = '#4CAF50';
+            // Success - Green background
+            document.body.style.backgroundColor = '#10b981';
+            document.body.style.backgroundImage = 'none';
             // Save game completion status
             const gameStatuses = getCookie('gameStatuses') ? JSON.parse(getCookie('gameStatuses')) : {};
             gameStatuses.oneSecond = true;
@@ -79,8 +82,9 @@ function toggleGame() {
             messageDiv.textContent = winnerMessage;
             messageDiv.classList.add('winner');
         } else {
-            document.body.style.backgroundColor = '#f44336';
-            // Show random failure message
+            // Failure - Red background
+            document.body.style.backgroundColor = '#ef4444';
+            document.body.style.backgroundImage = 'none';
             const randomMessage = failureMessages[Math.floor(Math.random() * failureMessages.length)];
             messageDiv.textContent = randomMessage;
             messageDiv.classList.remove('winner');
