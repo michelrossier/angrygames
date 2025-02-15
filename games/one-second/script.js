@@ -5,6 +5,17 @@ let startTime;
 let timerInterval;
 let isRunning = false;
 
+// Add at the top with other constants
+const failureMessages = [
+    "Oh, you are so bad",
+    "You sucked at that",
+    "Why are you so bad?",
+    "Can't you be better?",
+    "You are such a Paul",
+    "You suck at this big time",
+    "Ah come on, you can do better, can't you?"
+];
+
 function updateTimer() {
     const currentTime = Date.now();
     const elapsedTime = (currentTime - startTime) / 1000;
@@ -21,6 +32,7 @@ function toggleGame() {
         gameBtn.textContent = 'Stop';
         gameBtn.classList.remove('start');
         gameBtn.classList.add('stop');
+        messageDiv.textContent = ''; // Clear any previous message
     } else {
         // Stop the game
         clearInterval(timerInterval);
@@ -38,8 +50,12 @@ function toggleGame() {
             const gameStatuses = getCookie('gameStatuses') ? JSON.parse(getCookie('gameStatuses')) : {};
             gameStatuses.oneSecond = true;
             setCookie('gameStatuses', JSON.stringify(gameStatuses));
+            messageDiv.textContent = ''; // Clear any failure message
         } else {
             document.body.style.backgroundColor = '#f44336';
+            // Show random failure message
+            const randomMessage = failureMessages[Math.floor(Math.random() * failureMessages.length)];
+            messageDiv.textContent = randomMessage;
         }
     }
 }
@@ -59,4 +75,14 @@ function setCookie(name, value) {
     const date = new Date();
     date.setFullYear(date.getFullYear() + 1);
     document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
-} 
+}
+
+// Add after the timer div in the HTML
+function addMessageDiv() {
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'failureMessage';
+    document.querySelector('.container').appendChild(messageDiv);
+    return messageDiv;
+}
+
+const messageDiv = addMessageDiv(); 
