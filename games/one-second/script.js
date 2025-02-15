@@ -10,10 +10,14 @@ const failureMessages = [
     "Oh, you are so bad",
     "You sucked at that",
     "Why are you so bad?",
+    "Even my grandma could do better and she is dead",
+    "How old are you, 3?",
     "Can't you be better?",
     "You are such a Paul",
     "You suck at this big time",
-    "Ah come on, you can do better, can't you?"
+    "Ah come on, you can do better, can't you?",
+    "You are the worst",
+    "You are so bad, you should feel bad"
 ];
 
 function updateTimer() {
