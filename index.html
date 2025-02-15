@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impossible Games</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Impossible Games</h1>
+        <p id="greeting">
+            Hello <span id="userName">...</span>
+            <button id="newNameBtn" title="Get a new random name">Generate new name</button>
+        </p>
+        
+        <div class="games-grid">
+            <a href="games/one-second/index.html" class="game-card">
+                <h2>1 Second Challenge</h2>
+                <div class="difficulty">Difficulty: Hard</div>
+                <div class="game-status" id="oneSecondStatus">Won: Not yet</div>
+            </a>
+            <!-- More games will be added here in the future -->
+        </div>
+    </div>
+    <script>
+        const names = [
+            'Hodenkobold', 
+            'Gameloser', 
+            'PaulKeller', 
+            'Habasch',
+            'TerriblePlayer'
+        ];
+        
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        
+        function setCookie(name, value) {
+            // Set cookie that expires in 1 year
+            const date = new Date();
+            date.setFullYear(date.getFullYear() + 1);
+            document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
+        }
+        
+        function getRandomName() {
+            return names[Math.floor(Math.random() * names.length)];
+        }
+        
+        // Get or set username
+        let userName = getCookie('userName');
+        if (!userName) {
+            userName = getRandomName();
+            setCookie('userName', userName);
+        }
+        
+        // Display the username
+        document.getElementById('userName').textContent = userName;
+        
+        document.getElementById('newNameBtn').addEventListener('click', function() {
+            userName = getRandomName();
+            setCookie('userName', userName);
+            document.getElementById('userName').textContent = userName;
+        });
+        
+        function getGameStatus() {
+            const gameStatuses = getCookie('gameStatuses');
+            if (gameStatuses) {
+                return JSON.parse(gameStatuses);
+            }
+            return {
+                oneSecond: false
+            };
+        }
+        
+        // Update status display
+        const statuses = getGameStatus();
+        const oneSecondStatus = document.getElementById('oneSecondStatus');
+        if (statuses.oneSecond) {
+            oneSecondStatus.textContent = 'Won: Yesss!';
+            oneSecondStatus.classList.add('won');
+        }
+    </script>
+</body>
+</html> 
