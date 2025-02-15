@@ -296,7 +296,7 @@ function toggleGame() {
             messageDiv.classList.add('winner');
             updatePersonalBest(difference);
             startParticleEffect();
-        } else if (difference < 0.1) {
+        } else if (difference < 0.01) {
             // Close!
             document.body.className = 'close';
             messageDiv.textContent = "So close! Keep trying!";
