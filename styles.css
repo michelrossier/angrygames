@@ -240,4 +240,31 @@ button:hover:not(:disabled) {
     h1 {
         font-size: 3.5rem;
     }
+
+    .logo {
+        margin-bottom: 2rem;
+    }
+}
+
+.logo {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        margin-bottom: 2rem;
+    }
 } 

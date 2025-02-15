@@ -1,0 +1,19 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <circle cx="16" cy="16" r="15" fill="#2563eb"/>
+    
+    <!-- Left Angry Eyebrow -->
+    <path d="M8 11 L14 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Right Angry Eyebrow -->
+    <path d="M24 11 L18 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Left Eye -->
+    <circle cx="11" cy="15" r="2" fill="white"/>
+    
+    <!-- Right Eye -->
+    <circle cx="21" cy="15" r="2" fill="white"/>
+    
+    <!-- Angry Mouth -->
+    <path d="M10 22 C16 19 16 19 22 22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg> 
