@@ -242,7 +242,8 @@ button:hover:not(:disabled) {
     }
 
     .logo {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+        transform: scale(0.8);
     }
 }
 
@@ -265,6 +266,7 @@ button:hover:not(:disabled) {
 
 @media (max-width: 768px) {
     .logo {
-        margin-bottom: 2rem;
+        margin-bottom: 0.1rem;
+        transform: scale(0.7);
     }
 } 
