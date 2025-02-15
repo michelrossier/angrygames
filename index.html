@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" href="favicon.png">
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
     <div class="container">
@@ -58,11 +59,16 @@
     </div>
     <script>
         const names = [
-            'Hodenkobold', 
-            'Gameloser', 
-            'PaulKeller', 
-            'Habasch',
-            'TerriblePlayer'
+            'AngryPaul',
+            'RagingNoob',
+            'MadGamer',
+            'RageQuitter',
+            'SaltyPlayer',
+            'TiltMaster',
+            'RantingPro',
+            'FuriousGamer',
+            'AngryBob',
+            'RageMachine'
         ];
         
         function getCookie(name) {
@@ -79,7 +85,13 @@
         }
         
         function getRandomName() {
-            return names[Math.floor(Math.random() * names.length)];
+            // Get current name to avoid repeats
+            const currentName = getCookie('userName');
+            let newName;
+            do {
+                newName = names[Math.floor(Math.random() * names.length)];
+            } while (newName === currentName && names.length > 1);
+            return newName;
         }
         
         // Get or set username
@@ -93,9 +105,20 @@
         document.getElementById('userName').textContent = userName;
         
         document.getElementById('newNameBtn').addEventListener('click', function() {
+            const oldName = userName;
             userName = getRandomName();
             setCookie('userName', userName);
-            document.getElementById('userName').textContent = userName;
+            
+            // Animate the name change
+            const userNameElement = document.getElementById('userName');
+            userNameElement.style.opacity = '0';
+            userNameElement.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                userNameElement.textContent = userName;
+                userNameElement.style.opacity = '1';
+                userNameElement.style.transform = 'translateY(0)';
+            }, 200);
         });
         
         function getGameStatus() {
