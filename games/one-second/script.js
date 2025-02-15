@@ -61,6 +61,12 @@ function toggleGame() {
         gameBtn.classList.remove('stop');
         gameBtn.classList.add('start');
         
+        // Get and increment attempts
+        let attempts = parseInt(getCookie('oneSecondAttempts') || '0');
+        attempts++;
+        console.log('Setting attempts to:', attempts);
+        setCookie('oneSecondAttempts', attempts);
+        
         const finalTime = parseFloat(timerDisplay.textContent);
         const difference = Math.abs(1 - finalTime);
         
@@ -88,15 +94,18 @@ gameBtn.addEventListener('click', toggleGame);
 
 // Add cookie functions
 function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+    const value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    const cookieValue = value ? value.pop() : null;
+    console.log(`Getting cookie ${name}:`, cookieValue);
+    return cookieValue;
 }
 
 function setCookie(name, value) {
     const date = new Date();
     date.setFullYear(date.getFullYear() + 1);
-    document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
+    // Make sure cookie is available in all paths by setting path to root
+    document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/;SameSite=Lax`;
+    console.log(`Setting cookie ${name}:`, value);
 }
 
 // Get the username from cookie

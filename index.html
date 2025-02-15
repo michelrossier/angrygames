@@ -51,6 +51,7 @@
                 <h2>1 Second Challenge</h2>
                 <div class="difficulty">Difficulty: Hard</div>
                 <div class="game-status" id="oneSecondStatus">Won: Not yet</div>
+                <div class="game-attempts" id="oneSecondAttempts">Tried: 0 times</div>
             </a>
             <!-- More games will be added here in the future -->
         </div>
@@ -114,6 +115,19 @@
             oneSecondStatus.textContent = 'Won: Yesss!';
             oneSecondStatus.classList.add('won');
         }
+        
+        function updateAttempts() {
+            // Get the attempts from cookie, default to 0 if not found
+            const attempts = getCookie('oneSecondAttempts') ? parseInt(getCookie('oneSecondAttempts')) : 0;
+            console.log('Current attempts:', attempts); // Add logging to debug
+            const attemptsDiv = document.getElementById('oneSecondAttempts');
+            if (attemptsDiv) {
+                attemptsDiv.textContent = `Tried: ${attempts} time${attempts !== 1 ? 's' : ''}`;
+            }
+        }
+        
+        // Make sure this is called after all the other initialization
+        updateAttempts();
     </script>
 </body>
 </html> 

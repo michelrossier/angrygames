@@ -271,4 +271,19 @@ button:hover:not(:disabled) {
         margin-bottom: 0.1rem;
         transform: scale(0.7);
     }
+}
+
+.game-attempts {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    background-color: var(--background);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
 } 
