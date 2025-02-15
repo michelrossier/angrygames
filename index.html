@@ -51,6 +51,7 @@
                 <h2>1 Second Challenge</h2>
                 <div class="game-status" id="oneSecondStatus">Won: Not yet</div>
                 <div class="game-attempts" id="oneSecondAttempts">Tried: 0 times</div>
+                <div class="game-best" id="oneSecondBest">Best: Never played</div>
             </a>
             <!-- More games will be added here in the future -->
         </div>
@@ -125,8 +126,21 @@
             }
         }
         
-        // Make sure this is called after all the other initialization
+        function updateBestTime() {
+            const bestTime = getCookie('oneSecondBest');
+            const bestDiv = document.getElementById('oneSecondBest');
+            if (bestTime && bestTime !== '999') {
+                bestDiv.textContent = `Best: ${bestTime}s off`;
+                bestDiv.classList.add('has-record');
+            } else {
+                bestDiv.textContent = 'Best: Never played';
+                bestDiv.classList.remove('has-record');
+            }
+        }
+        
+        // Call both functions after initialization
         updateAttempts();
+        updateBestTime();
     </script>
 </body>
 </html> 
