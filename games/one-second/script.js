@@ -285,7 +285,7 @@ function toggleGame() {
         const finalTime = parseFloat(timerDisplay.textContent);
         const difference = Math.abs(1 - finalTime);
         
-        if (difference < 0.301) {
+        if (difference < 0.001) {
             // Perfect!
             document.body.className = 'success';
             // Save game completion status
